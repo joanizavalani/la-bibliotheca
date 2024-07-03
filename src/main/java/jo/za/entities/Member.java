@@ -9,9 +9,9 @@ import java.util.List;
 @Getter @Setter
 
 @Entity
-@Table(name = "books")
+@Table(name = "members")
 
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +27,12 @@ public class User {
 
     private boolean isRenting;
 
-    @OneToOne(mappedBy = "books")
+    @OneToOne
     private Book bookRentingNow;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "member")
     private List<Rental> allRented;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "member")
     private List<Return> allReturned;
 }

@@ -27,9 +27,9 @@ public class Book {
 
     private boolean available;
 
-    @OneToMany(mappedBy = "books")
+    @OneToMany(mappedBy = "book")
     private List<Rental> rentals;
 
-    @OneToMany(mappedBy = "books")
+    @OneToMany(mappedBy = "book")
     private List<Return> returns;
 }

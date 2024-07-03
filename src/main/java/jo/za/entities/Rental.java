@@ -17,12 +17,12 @@ public class Rental {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "books_id")
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     private LocalDateTime rentedAt;
 
