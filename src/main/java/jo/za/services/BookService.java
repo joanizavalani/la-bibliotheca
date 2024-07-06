@@ -13,71 +13,50 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository){
+    public BookService(BookRepository bookRepository) {
 
         this.bookRepository = bookRepository;
     }
 
     // methods for registering new books
 
-    public Book registerNewBow(Book book){
+    public Book registerNewBow(Book book) {
 
         return this.bookRepository.save(book);
     }
 
-    public void registerListOfBooks(List<Book> booksToRegister){
+    public void registerListOfBooks(List<Book> booksToRegister) {
 
-        for(int i = 0; i < booksToRegister.size(); i++){
-
-            Book book = booksToRegister.get(i);
-
-            this.bookRepository.save(book);
-        }
+        this.bookRepository.saveAll(booksToRegister);
     }
 
     // delete a book
 
-    public void deleteBook(long id){
+    public void deleteBook(long id) {
 
         this.bookRepository.deleteById(id);
     }
 
     // get methods
 
-    public List<Book> getAllBooks(){
+    public List<Book> getAllBooks() {
 
         return this.bookRepository.findAll();
     }
 
-    public Book getById(long id){
+    public Book getBookById(long id) {
 
         return this.bookRepository.findById(id).get();
     }
 
-    public List<Book> getByGenre(String genre){
-
-        List<Book> allBooks = getAllBooks();
-        List<Book> booksByGenre = new ArrayList<>();
-
-        for(Book book : allBooks){
-
-            if(book.getGenre().contains(genre)){
-
-                booksByGenre.add(book);
-            }
-        }
-
-        return booksByGenre;
-    }
-
-    public List<Book> getByAvailability(boolean available){
+    public List<Book> getBooksByAvailability(boolean available) {
 
         List<Book> allBooks = getAllBooks();
         List<Book> booksByAvailability = new ArrayList<>();
 
-        for(Book book : allBooks){
+        for (Book book : allBooks) {
 
-            if(book.isAvailable() == available){
+            if (book.isAvailable() == available) {
 
                 booksByAvailability.add(book);
             }
@@ -88,16 +67,16 @@ public class BookService {
 
     // search methods
 
-    public List<Book> searchByTitle(String searchInput){
+    public List<Book> searchBookByTitle(String searchInput) {
 
         List<Book> allBooks = getAllBooks();
         List<Book> booksByTitleSearch = new ArrayList<>();
 
-        for(int i = 0; i < allBooks.size(); i++){
+        String lowerCaseSearchInput = searchInput.toLowerCase();
 
-            Book book = allBooks.get(i);
+        for (Book book : allBooks) {
 
-            if(book.getTitle().contains(searchInput)){
+            if (book.getTitle().toLowerCase().contains(lowerCaseSearchInput)) {
 
                 booksByTitleSearch.add(book);
             }
@@ -106,16 +85,16 @@ public class BookService {
         return booksByTitleSearch;
     }
 
-    public List<Book> searchByAuthor(String searchInput){
+    public List<Book> searchBookByAuthor(String searchInput) {
 
         List<Book> allBooks = getAllBooks();
         List<Book> booksByAuthorSearch = new ArrayList<>();
 
-        for(int i = 0; i < allBooks.size(); i++){
+        String lowerCaseSearchInput = searchInput.toLowerCase();
 
-            Book book = allBooks.get(i);
+        for (Book book : allBooks) {
 
-            if(book.getAuthor().contains(searchInput)){
+            if (book.getAuthor().toLowerCase().contains(lowerCaseSearchInput)) {
 
                 booksByAuthorSearch.add(book);
             }
