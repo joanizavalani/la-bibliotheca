@@ -26,5 +26,6 @@ public class Rental {
 
     private LocalDateTime rentedAt;
 
-}
+    private boolean returnedYet;
 
+}

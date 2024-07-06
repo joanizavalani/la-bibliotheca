@@ -23,13 +23,17 @@ public class Book {
 
     private String genre;
 
-    private int copies;
+    private String publisher;
 
     private boolean available;
+
+    @OneToOne
+    private Member rentedBy;
 
     @OneToMany(mappedBy = "book")
     private List<Rental> rentals;
 
     @OneToMany(mappedBy = "book")
     private List<Return> returns;
+
 }

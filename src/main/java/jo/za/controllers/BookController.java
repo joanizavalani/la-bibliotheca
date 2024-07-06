@@ -27,9 +27,9 @@ public class BookController {
     }
 
     @PostMapping("/register-many")
-    public void registerListOfBooks(@RequestBody List<Book> booksToRegister){
+    public List<Book> registerListOfBooks(@RequestBody List<Book> booksToRegister){
 
-        this.bookService.registerListOfBooks(booksToRegister);
+        return this.bookService.registerListOfBooks(booksToRegister);
     }
 
     // delete a book
@@ -60,7 +60,11 @@ public class BookController {
         return this.bookService.getBooksByAvailability(available);
     }
 
-    // a method for getting by genre needs to be made also
+    @GetMapping("/genre/{genre}")
+    public List<Book> getBooksByGenre(@PathVariable("genre") String genre){
+
+        return this.bookService.getBooksByGenre(genre);
+    }
 
     // search methods
 

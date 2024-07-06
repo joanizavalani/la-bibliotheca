@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter @Setter
@@ -25,6 +26,8 @@ public class Member {
 
     private String phoneNumber;
 
+    private Date dateRegistered;
+
     private boolean isRenting;
 
     @OneToOne
@@ -35,4 +38,5 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Return> allReturned;
+
 }
