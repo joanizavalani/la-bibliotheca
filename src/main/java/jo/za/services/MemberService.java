@@ -4,6 +4,7 @@ import jo.za.entities.Member;
 import jo.za.repositories.MemberRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -36,5 +37,31 @@ public class MemberService {
         this.memberRepository.deleteById(id);
     }
 
-    // to do: finish the rest of this class
+    // get methods
+
+    public List<Member> getAllMembers(){
+
+        return this.memberRepository.findAll();
+    }
+
+    public Member getMemberById(long id){
+
+        return this.memberRepository.findById(id).get();
+    }
+
+    public List<Member> getMembersByRentingStatus(boolean isRenting){
+
+        List<Member> allMembers = getAllMembers();
+        List<Member> membersByRentingStatus = new ArrayList<>();
+
+        for(Member member : allMembers){
+
+            if(member.isRenting() == isRenting){
+
+                membersByRentingStatus.add(member);
+            }
+        }
+
+        return membersByRentingStatus;
+    }
 }
